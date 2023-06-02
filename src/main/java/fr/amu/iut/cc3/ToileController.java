@@ -23,8 +23,11 @@ public class ToileController implements Initializable {
     private int c = 200;
 
 
+    //Récupération du label d'erreur
     @FXML
     private Label labelError;
+
+    //Récupération des 6 points du graph
     @FXML
     private Shape point1;
     @FXML
@@ -38,6 +41,7 @@ public class ToileController implements Initializable {
     @FXML
     private Shape point6;
 
+    //Récupération des 6 TextField du graph
     @FXML
     private TextField FieldC1;
     @FXML
@@ -51,6 +55,7 @@ public class ToileController implements Initializable {
     @FXML
     private TextField FieldC6;
 
+    //Récupération des lignes reliant les points
     @FXML
     private Line Line1_2;
     @FXML
