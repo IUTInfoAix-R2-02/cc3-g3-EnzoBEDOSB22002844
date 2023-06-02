@@ -33,6 +33,7 @@
       <Circle fx:id="point4" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="point5" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="point6" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endX="100.0" fill="BLACK" layoutX="200.0" layoutY="200.0" smooth="false" startX="200.0" startY="200.0" />
     </Pane>
    <VBox prefHeight="350.0" prefWidth="230.0">
       <children>
@@ -96,7 +97,7 @@
          </GridPane>
          <HBox prefHeight="85.0" prefWidth="230.0">
             <children>
-               <Label alignment="TOP_LEFT" prefHeight="75.0" prefWidth="230.0" text="TEST" visible="false" />
+               <Label fx:id="labelError" prefHeight="75.0" prefWidth="230.0" text="Erreur de saisie :                           Les valeurs vont de 0 à 20 !" textFill="RED" visible="false" wrapText="true" />
             </children>
          </HBox>
          <HBox prefHeight="97.0" prefWidth="230.0">
