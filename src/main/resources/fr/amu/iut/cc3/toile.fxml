@@ -19,7 +19,7 @@
         </Group>
         <Line endX="200" endY="400.0" startX="200.0" startY="0" styleClass="toile" />
         <Line endX="200.0" endY="400.0" rotate="60.0" startX="200.0" styleClass="toile" />
-        <Line endX="200.0" endY="400.0" rotate="120.0" startX="200.0" styleClass="toile" />
+        <Line layoutX="200.0" layoutY="200.0" rotate="120.0" styleClass="toile" />
         <Text text="Compétence 1" translateY="20.0" x="170" y="0" />
         <Text text="Compétence 2" x="300" y="100" />
         <Text text="Compétence 3" x="300" y="300" />
@@ -33,7 +33,12 @@
       <Circle fx:id="point4" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="point5" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle fx:id="point6" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-      <Line endX="100.0" fill="BLACK" layoutX="200.0" layoutY="200.0" smooth="false" startX="200.0" startY="200.0" />
+      <Line fx:id="Line1_2" endX="200.0" endY="200.0" fill="BLACK" startX="200.0" startY="200.0" />
+      <Line fx:id="Line2_3" endX="200.0" endY="200.0" fill="BLACK" startX="200.0" startY="200.0" />
+      <Line fx:id="Line3_4" endX="200.0" endY="200.0" fill="BLACK" startX="200.0" startY="200.0" />
+      <Line fx:id="Line4_5" endX="200.0" endY="200.0" fill="BLACK" startX="200.0" startY="200.0" />
+      <Line fx:id="Line5_6" endX="200.0" endY="200.0" fill="BLACK" startX="200.0" startY="200.0" />
+      <Line fx:id="Line6_1" endX="200.0" endY="200.0" fill="BLACK" startX="200.0" startY="200.0" />
     </Pane>
    <VBox prefHeight="350.0" prefWidth="230.0">
       <children>

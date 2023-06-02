@@ -1,29 +1,12 @@
 package fr.amu.iut.cc3;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ToileController implements Initializable {
@@ -32,6 +15,12 @@ public class ToileController implements Initializable {
     private static int angleEnDegre = 60;
     private static int angleDepart = 90;
     private static int noteMaximale = 20;
+
+    // Permet de changer la couleur des traits reliant les points
+    private String colorLine = "black";
+
+    //coordonée X et Y du centre du graph
+    private int c = 200;
 
 
     @FXML
@@ -62,110 +51,266 @@ public class ToileController implements Initializable {
     @FXML
     private TextField FieldC6;
 
+    @FXML
+    private Line Line1_2;
+    @FXML
+    private Line Line2_3;
+    @FXML
+    private Line Line3_4;
+    @FXML
+    private Line Line4_5;
+    @FXML
+    private Line Line5_6;
+    @FXML
+    private Line Line6_1;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
+    //Récupération de la coordonnée X en fonction de la note et de la compétence
     int getXRadarChart(double value, int axe ){
         return (int) (rayonCercleExterieur + Math.cos(Math.toRadians(angleDepart - (axe-1)  * angleEnDegre)) * rayonCercleExterieur
                 *  (value / noteMaximale));
     }
 
+    //Récupération de la coordonnée Y en fonction de la note et de la compétence
     int getYRadarChart(double value, int axe ){
         return (int) (rayonCercleExterieur - Math.sin(Math.toRadians(angleDepart - (axe-1)  * angleEnDegre)) * rayonCercleExterieur
                 *  (value / noteMaximale));
     }
 
 
+    //Changement des coordonnées du point 1
     public void setPoint1(Shape point1, int x, int y) {
         point1.setLayoutX(x);
         point1.setLayoutY(y);
     }
+
+    //Changement des coordonnées du point 2
     public void setPoint2(Shape point2, int x, int y) {
         point2.setLayoutX(x);
         point2.setLayoutY(y);
     }
+
+    //Changement des coordonnées du point 3
     public void setPoint3(Shape point3, int x, int y) {
         point3.setLayoutX(x);
         point3.setLayoutY(y);
     }
+
+    //Changement des coordonnées du point 4
     public void setPoint4(Shape point4, int x, int y) {
         point4.setLayoutX(x);
         point4.setLayoutY(y);
     }
+
+    //Changement des coordonnées du point 5
     public void setPoint5(Shape point5, int x, int y) {
         point5.setLayoutX(x);
         point5.setLayoutY(y);
     }
+
+    //Changement des coordonnées du point 6
     public void setPoint6(Shape point6, int x, int y) {
         point6.setLayoutX(x);
         point6.setLayoutY(y);
     }
     @FXML
     private void writeComp(){
-        if (Integer.valueOf(FieldC1.getText())> 20 ||Integer.valueOf(FieldC1.getText()) < 0 ){
-            labelError.setVisible(true);
+
+        // Convertion des notes String en int
+        int valueC1 = Integer.valueOf(FieldC1.getText());
+        int valueC2 = Integer.valueOf(FieldC2.getText());
+        int valueC3 = Integer.valueOf(FieldC3.getText());
+        int valueC4 = Integer.valueOf(FieldC4.getText());
+        int valueC5 = Integer.valueOf(FieldC5.getText());
+        int valueC6 = Integer.valueOf(FieldC6.getText());
+
+        // Changement de couleur des traits
+        Line1_2.setStyle("-fx-stroke: "+colorLine+";");
+        Line2_3.setStyle("-fx-stroke: "+colorLine+";");
+        Line3_4.setStyle("-fx-stroke: "+colorLine+";");
+        Line4_5.setStyle("-fx-stroke: "+colorLine+";");
+        Line5_6.setStyle("-fx-stroke: "+colorLine+";");
+        Line6_1.setStyle("-fx-stroke: "+colorLine+";");
+
+        // Si une variable est inférieur à 0 ou supérieur à 20, "labelTest" se met à "true"
+        boolean labelTest =false;
+
+        // Verification de la condition, 0 < i < 20
+
+        // Si la note et inférieur à 0 ou supérieur à 20, alors "labelTest" passe à "true"
+        if (valueC1> 20 ||valueC1 < 0 ){
+            labelTest = true;
         } else {
-            int x1 = getXRadarChart(Integer.valueOf(FieldC1.getText()),1);
-            int y1 = getYRadarChart(Integer.valueOf(FieldC1.getText()),1);
+            // Récupération des coordonnées du point pour la compétence 1
+            int x1 = getXRadarChart(valueC1,1);
+            int y1 = getYRadarChart(valueC1,1);
+
+            // Changement des coordonées du point 1
             setPoint1(point1, x1, y1);
+
+            // Coordonnées de début et de fin des traits
+            Line6_1.setEndX(x1);
+            Line6_1.setEndY(y1);
+
+            Line1_2.setStartX(x1);
+            Line1_2.setStartY(y1);
         }
 
-        if (Integer.valueOf(FieldC2.getText())> 20 ||Integer.valueOf(FieldC2.getText()) < 0 ){
-            labelError.setVisible(true);
+        // Si la note et inférieur à 0 ou supérieur à 20, alors "labelTest" passe à "true"
+        if (valueC2> 20 ||valueC2 < 0 ){
+            labelTest = true;
+
         } else {
-            int x2 = getXRadarChart(Integer.valueOf(FieldC2.getText()), 2);
-            int y2 = getYRadarChart(Integer.valueOf(FieldC2.getText()),2);
+            // Récupération des coordonnées du point pour la compétence 2
+            int x2 = getXRadarChart(valueC2, 2);
+            int y2 = getYRadarChart(valueC2,2);
+
+            // Changement des coordonées du point 2
             setPoint2(point2, x2, y2);
+
+            // Coordonnées de début et de fin des traits
+            Line1_2.setEndX(x2);
+            Line1_2.setEndY(y2);
+
+            Line2_3.setStartX(x2);
+            Line2_3.setStartY(y2);
         }
 
-        if (Integer.valueOf(FieldC3.getText())> 20 ||Integer.valueOf(FieldC3.getText()) < 0 ){
-            labelError.setVisible(true);
+        // Si la note et inférieur à 0 ou supérieur à 20, alors "labelTest" passe à "true"
+        if (valueC3> 20 ||valueC3 < 0 ){
+            labelTest = true;
         } else {
-            int x3 = getXRadarChart(Integer.valueOf(FieldC3.getText()),3);
-            int y3 = getYRadarChart(Integer.valueOf(FieldC3.getText()),3);
+            // Récupération des coordonnées du point pour la compétence 3
+            int x3 = getXRadarChart(valueC3,3);
+            int y3 = getYRadarChart(valueC3,3);
+            // Changement des coordonées du point 3
             setPoint3(point3, x3, y3);
-        }
 
-        if (Integer.valueOf(FieldC4.getText())> 20 ||Integer.valueOf(FieldC4.getText()) < 0 ){
-            labelError.setVisible(true);
+            // Coordonnées de début et de fin des traits
+            Line2_3.setEndX(x3);
+            Line2_3.setEndY(y3);
+
+            Line3_4.setStartX(x3);
+            Line3_4.setStartY(y3);
+        }
+        // Si la note et inférieur à 0 ou supérieur à 20, alors "labelTest" passe à "true"
+        if (valueC4> 20 ||valueC4 < 0 ){
+            labelTest = true;
         } else {
-            int x4 = getXRadarChart(Integer.valueOf(FieldC4.getText()),4);
-            int y4 = getYRadarChart(Integer.valueOf(FieldC4.getText()),4);
+            // Récupération des coordonnées du point pour la compétence 4
+            int x4 = getXRadarChart(valueC4,4);
+            int y4 = getYRadarChart(valueC4,4);
+
+            // Changement des coordonées du point 4
             setPoint4(point4, x4, y4);
-            
+
+            // Coordonnées de début et de fin des traits
+            Line3_4.setEndX(x4);
+            Line3_4.setEndY(y4);
+
+            Line4_5.setStartX(x4);
+            Line4_5.setStartY(y4);
+
         }
 
-        if (Integer.valueOf(FieldC5.getText())> 20 ||Integer.valueOf(FieldC5.getText()) < 0 ){
-            labelError.setVisible(true);
+        // Si la note et inférieur à 0 ou supérieur à 20, alors "labelTest" passe à "true"
+        if (valueC5 > 20 ||valueC5 < 0 ){
+            labelTest = true;
         } else {
-            int x5 = getXRadarChart(Integer.valueOf(FieldC5.getText()),5);
-            int y5 = getYRadarChart(Integer.valueOf(FieldC5.getText()),5);
+            // Récupération des coordonnées du point pour la compétence 5
+            int x5 = getXRadarChart(valueC5,5);
+            int y5 = getYRadarChart(valueC5,5);
+
+            // Changement des coordonées du point 5
             setPoint5(point5, x5, y5);
+
+            // Coordonnées de début et de fin des traits
+            Line4_5.setEndX(x5);
+            Line4_5.setEndY(y5);
+
+            Line5_6.setStartX(x5);
+            Line5_6.setStartY(y5);
         }
 
-        if (Integer.valueOf(FieldC6.getText())> 20 ||Integer.valueOf(FieldC6.getText()) < 0 ){
+        // Si la note et inférieur à 0 ou supérieur à 20, alors "labelTest" passe à "true"
+        if (valueC6 > 20 ||valueC6 < 0 ){
+            labelTest = true;
+        } else {
+            // Récupération des coordonnées du point pour la compétence 6
+            int x6 = getXRadarChart(valueC6,6);
+            int y6 = getYRadarChart(valueC6,6);
+
+            // Changement des coordonées du point 6
+            setPoint6(point6, x6, y6);
+
+            // Coordonnées de début et de fin des traits
+            Line5_6.setEndX(x6);
+            Line5_6.setEndY(y6);
+
+            Line6_1.setStartX(x6);
+            Line6_1.setStartY(y6);
+        }
+        if (labelTest == true){
             labelError.setVisible(true);
         } else {
-            int x6 = getXRadarChart(Integer.valueOf(FieldC6.getText()),6);
-            int y6 = getYRadarChart(Integer.valueOf(FieldC6.getText()),6);
-            setPoint6(point6, x6, y6);
+            labelError.setVisible(false);
         }
     }
     @FXML
     private void clearField(){
+
+        //Textfield clear pour une nouvelle saisie
         FieldC1.setText("");
         FieldC2.setText("");
         FieldC3.setText("");
         FieldC4.setText("");
         FieldC5.setText("");
         FieldC6.setText("");
-        setPoint1(point1, 200, 200);
-        setPoint2(point2, 200, 200);
-        setPoint3(point3, 200, 200);
-        setPoint4(point4, 200, 200);
-        setPoint5(point5, 200, 200);
-        setPoint6(point6, 200, 200);
+
+        //Réinitialisation des points vers le centre du graphique
+        setPoint1(point1, c, c);
+        setPoint2(point2, c, c);
+        setPoint3(point3, c, c);
+        setPoint4(point4, c, c);
+        setPoint5(point5, c, c);
+        setPoint6(point6, c, c);
+
+        //Réinitialisation des coordonnées des traits vers le centre du graphique
+        Line1_2.setStartX(c);
+        Line1_2.setStartY(c);
+        Line1_2.setEndX(c);
+        Line1_2.setEndY(c);
+
+        Line2_3.setStartX(c);
+        Line2_3.setStartY(c);
+        Line2_3.setEndX(c);
+        Line2_3.setEndY(c);
+
+        Line3_4.setStartX(c);
+        Line3_4.setStartY(c);
+        Line3_4.setEndX(c);
+        Line3_4.setEndY(c);
+
+        Line4_5.setStartX(c);
+        Line4_5.setStartY(c);
+        Line4_5.setEndX(c);
+        Line4_5.setEndY(c);
+
+        Line5_6.setStartX(c);
+        Line5_6.setStartY(c);
+        Line5_6.setEndX(c);
+        Line5_6.setEndY(c);
+
+        Line6_1.setStartX(c);
+        Line6_1.setStartY(c);
+        Line6_1.setEndX(c);
+        Line6_1.setEndY(c);
+
+        //Réinitialisation du label d'erreur en invisible
         labelError.setVisible(false);
     }
 
