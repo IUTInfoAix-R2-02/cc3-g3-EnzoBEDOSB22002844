@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<HBox id="scene" blendMode="MULTIPLY" prefHeight="420.0" prefWidth="650.0" spacing="20.0" style="-fx-background-color: #B0C4DE;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="scene" blendMode="MULTIPLY" prefHeight="420.0" prefWidth="650.0" spacing="20.0" style="-fx-background-color: #B0C4DE;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.cc3.ToileController">
     <Pane prefHeight="400.0" prefWidth="400.0">
         <Circle fx:id="fieldC1" centerX="200.0" centerY="200.0" radius="200.0" styleClass="toile" />
         <Circle centerX="200.0" centerY="200.0" radius="150.0" styleClass="toile" />
@@ -27,6 +27,12 @@
         <Text text="Compétence 5" x="26" y="300" />
         <Text text="Compétence 6" x="26" y="99" />
         <Pane fx:id="toile" styleClass="toile" />
+      <Circle fx:id="point1" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="point2" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="point3" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="point4" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="point5" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="point6" layoutX="200.0" layoutY="200.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
     </Pane>
    <VBox prefHeight="350.0" prefWidth="230.0">
       <children>
@@ -46,7 +52,7 @@
             <children>
                <TextField fx:id="FieldC1" GridPane.columnIndex="1" />
                <TextField fx:id="FieldC2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               <TextField fx:id="fieldC3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <TextField fx:id="FieldC3" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <GridPane.margin>
                      <Insets />
                   </GridPane.margin></TextField>
@@ -90,12 +96,12 @@
          </GridPane>
          <HBox prefHeight="85.0" prefWidth="230.0">
             <children>
-               <Label alignment="TOP_LEFT" prefHeight="75.0" prefWidth="230.0" text="TEST" />
+               <Label alignment="TOP_LEFT" prefHeight="75.0" prefWidth="230.0" text="TEST" visible="false" />
             </children>
          </HBox>
          <HBox prefHeight="97.0" prefWidth="230.0">
             <children>
-               <Button fx:id="btn_write" mnemonicParsing="false" onAction="#writeCompetence" text="Tracer" translateX="40.0" translateY="45.0" />
+               <Button fx:id="btn_write" mnemonicParsing="false" onAction="#writeComp" text="Tracer" translateX="40.0" translateY="45.0" />
                <Button fx:id="btn_clear" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearField" text="Vider" translateX="60.0" translateY="45.0" />
             </children>
             <VBox.margin>
