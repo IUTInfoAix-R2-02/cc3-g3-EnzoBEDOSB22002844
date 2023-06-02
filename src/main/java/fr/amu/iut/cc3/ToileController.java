@@ -31,6 +31,9 @@ public class ToileController implements Initializable {
     private static int angleDepart = 90;
     private static int noteMaximale = 20;
 
+    @FXML
+    private TextField FieldC1;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,6 +47,11 @@ public class ToileController implements Initializable {
     int getYRadarChart(double value, int axe ){
         return (int) (rayonCercleExterieur - Math.sin(Math.toRadians(angleDepart - (axe-1)  * angleEnDegre)) * rayonCercleExterieur
                 *  (value / noteMaximale));
+    }
+
+    @FXML
+    private void clearField(){
+        FieldC1.setText("");
     }
 
 }
